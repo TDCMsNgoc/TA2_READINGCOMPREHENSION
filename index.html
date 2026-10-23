@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English 2 - READING COMPREHENSION | TDC</title>
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/tdc_logo.svg">
-  
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,8 +32,102 @@
   <!-- Canvas Confetti for submission celebration -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Custom Styles (Inlined for 100% standalone reliability) -->
+  <style>
+    @keyframes pulseHighlight {
+      0% {
+        background-color: rgba(251, 191, 36, 0.2);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+      }
+      50% {
+        background-color: rgba(253, 230, 138, 0.95);
+        box-shadow: 0 0 16px 4px rgba(245, 158, 11, 0.6);
+        border-radius: 6px;
+      }
+      100% {
+        background-color: rgba(254, 243, 199, 0.6);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+      }
+    }
+
+    .evidence-highlight-pulse {
+      animation: pulseHighlight 2.5s ease-in-out forwards;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 2px 4px;
+    }
+
+    /* Custom Scrollbars */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #f8fafc;
+    }
+
+    .passage-text-body {
+      line-height: 1.8;
+      color: #1e293b;
+    }
+
+    .passage-text-body p {
+      margin-bottom: 1rem;
+    }
+
+    .passage-text-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .option-item:hover {
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    .option-item:active {
+      transform: translateY(0);
+    }
+
+    @media (min-width: 1024px) {
+      .desktop-pane-height {
+        height: calc(100vh - 120px);
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .desktop-pane-height {
+        height: auto;
+      }
+    }
+
+    @media print {
+      header, #question-palette-container, #review-filter-toolbar, .no-print {
+        display: none !important;
+      }
+      .desktop-pane-height {
+        height: auto !important;
+        overflow: visible !important;
+      }
+      body {
+        background: white;
+        color: black;
+      }
+    }
+  </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col font-sans">
 
@@ -47,9 +138,34 @@
       <!-- LOGO TDC BÊN GÓC TRÁI & TIÊU ĐỀ ENGLISH 2-READING COMPREHENSION -->
       <div class="flex items-center gap-3 shrink-0">
         <a href="javascript:location.reload()" class="flex items-center gap-2.5 group" title="Trường Cao đẳng Công nghệ Thủ Đức - TDC">
-          <!-- TDC Logo -->
+          <!-- TDC Logo (Inline SVG: Sắc nét, không lo lỗi đường dẫn hay mất ảnh) -->
           <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-white p-1 shadow-md flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
-            <img src="assets/tdc_logo.svg" alt="TDC Logo" class="w-full h-full object-contain">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="w-full h-full">
+              <defs>
+                <linearGradient id="tdcGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0284c7" />
+                  <stop offset="50%" stop-color="#0369a1" />
+                  <stop offset="100%" stop-color="#0c4a6e" />
+                </linearGradient>
+                <linearGradient id="goldGradHeader" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fbbf24" />
+                  <stop offset="100%" stop-color="#d97706" />
+                </linearGradient>
+              </defs>
+              <path d="M100 12 C145 12 180 28 180 65 C180 125 140 170 100 188 C60 170 20 125 20 65 C20 28 55 12 100 12 Z" fill="url(#tdcGradHeader)" stroke="#f59e0b" stroke-width="4"/>
+              <path d="M100 22 C138 22 168 36 168 68 C168 118 134 158 100 174 C66 158 32 118 32 68 C32 36 62 22 100 22 Z" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+              <path d="M100 42 L142 58 L100 74 L58 58 Z" fill="url(#goldGradHeader)" />
+              <polygon points="100,74 135,60 135,68 100,82 65,68 65,60" fill="#b45309" opacity="0.8"/>
+              <line x1="140" y1="59" x2="148" y2="76" stroke="#fef08a" stroke-width="2"/>
+              <circle cx="148" cy="78" r="3.5" fill="#fef08a"/>
+              <g font-family="'Arial Black', Impact, sans-serif" font-weight="900" font-size="44" text-anchor="middle" fill="#ffffff">
+                <text x="100" y="125" letter-spacing="2">TDC</text>
+              </g>
+              <path d="M70 138 Q100 134 100 148 Q100 134 130 138 L126 150 Q100 146 100 156 Q100 146 74 150 Z" fill="#ffffff" opacity="0.95"/>
+              <circle cx="100" cy="148" r="2.5" fill="#0369a1"/>
+              <rect x="42" y="160" width="116" height="15" rx="7.5" fill="url(#goldGradHeader)"/>
+              <text x="100" y="171" font-family="'Arial', sans-serif" font-size="8.5" font-weight="bold" fill="#0f172a" text-anchor="middle" letter-spacing="1">THU DUC COLLEGE</text>
+            </svg>
           </div>
           <!-- Title Branding -->
           <div class="flex flex-col">
@@ -102,7 +218,7 @@
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span class="text-sky-100 hidden sm:inline font-medium">Lượt truy cập:</span>
-            <span class="text-amber-300 font-bold font-mono text-xs sm:text-sm">...</span>
+            <span class="text-amber-300 font-bold font-mono text-xs sm:text-sm">1</span>
           </span>
         </div>
 
@@ -476,7 +592,7 @@
             </svg>
             Tổng lượt truy cập
           </div>
-          <div class="text-2xl font-black text-sky-950 font-mono" id="admin-stat-visits">0</div>
+          <div class="text-2xl font-black text-sky-950 font-mono" id="admin-stat-visits">1</div>
         </div>
 
         <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
@@ -569,7 +685,12 @@
   <footer class="bg-white border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-500 mt-auto">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
       <div class="flex items-center gap-2">
-        <img src="assets/tdc_logo.svg" alt="TDC" class="w-5 h-5">
+        <div class="w-5 h-5 shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="w-full h-full">
+            <path d="M100 12 C145 12 180 28 180 65 C180 125 140 170 100 188 C60 170 20 125 20 65 C20 28 55 12 100 12 Z" fill="#0369a1" stroke="#f59e0b" stroke-width="4"/>
+            <text x="100" y="125" font-family="Arial, Impact, sans-serif" font-weight="bold" font-size="50" text-anchor="middle" fill="#ffffff">TDC</text>
+          </svg>
+        </div>
         <span class="font-semibold text-slate-700">Trường Cao đẳng Công nghệ Thủ Đức (TDC)</span>
         <span>• English 2 (TA2)</span>
       </div>
@@ -579,9 +700,1798 @@
     </div>
   </footer>
 
-  <!-- Script Modules -->
-  <script src="js/data.js"></script>
-  <script src="js/tracker.js"></script>
-  <script src="js/app.js"></script>
+  <!-- ================= EMBEDDED JAVASCRIPT MODULES ================= -->
+  <!-- 1. DỮ LIỆU BÀI ĐỌC & 40 CÂU HỎI -->
+  <script>
+    const quizData = {
+      title: "English 2 - READING COMPREHENSION",
+      course: "Tiếng Anh 2 (TA2)",
+      institution: "TRƯỜNG CAO ĐẲNG CÔNG NGHỆ THỦ ĐỨC (TDC)",
+      passages: [
+        {
+          id: 1,
+          title: "Passage 1: Rules and choice around the world",
+          subtitle: "Quy định và sự lựa chọn trên khắp thế giới",
+          contentHtml: `
+            <div class="passage-intro mb-4 text-slate-700 font-medium">
+              Read the passage and choose the best answer.
+            </div>
+            <h4 class="text-lg font-bold text-sky-900 mb-3 border-b pb-2">Rules and choice around the world</h4>
+            <ul class="space-y-3 text-slate-800 leading-relaxed passage-list">
+              <li data-quote-id="q1" class="transition-colors p-1.5 rounded">
+                • In South Dakota, in the US, you can <span class="evidence-target">drive a car at 14 years of age</span>.
+              </li>
+              <li data-quote-id="q2" class="transition-colors p-1.5 rounded">
+                • You can <span class="evidence-target">watch TV shows in around 15 languages in Malaysia</span>. Many Malaysians can speak at least three languages.
+              </li>
+              <li data-quote-id="q3" class="transition-colors p-1.5 rounded">
+                • In Brazil, <span class="evidence-target">both men and women can vote at the age of 16</span>.
+              </li>
+              <li data-quote-id="q4-5" class="transition-colors p-1.5 rounded">
+                • In Peru, <span class="evidence-target q4-target">you have to go to school for 10 years</span>, but in Thailand, you have to go for only 9 years. In Kenya, <span class="evidence-target q5-target">you don’t have to go to school after the age of 13</span>.
+              </li>
+              <li data-quote-id="q6" class="transition-colors p-1.5 rounded">
+                • In Mexico, <span class="evidence-target">girls can get married at 14 if their parents agree</span>.
+              </li>
+              <li data-quote-id="q7" class="transition-colors p-1.5 rounded">
+                • At Brighton College in the UK, at the age of 13 <span class="evidence-target">every student has to study Chinese</span>!
+              </li>
+              <li data-quote-id="q8" class="transition-colors p-1.5 rounded">
+                • <span class="evidence-target">Until 1994, black people in South Africa couldn’t vote</span>.
+              </li>
+              <li data-quote-id="q9" class="transition-colors p-1.5 rounded">
+                • Women couldn’t vote anywhere in the world until 1893, when <span class="evidence-target">New Zealand became the first country to give women the vote</span>.
+              </li>
+              <li data-quote-id="q10" class="transition-colors p-1.5 rounded">
+                • Around 2 million children in the United States don’t have to go to school – they can stay at home because their parents teach them. <span class="evidence-target">This is called homeschooling</span>.
+              </li>
+            </ul>
+          `,
+          questions: [
+            {
+              id: 1,
+              passageId: 1,
+              question: "At what age can you legally drive a car in South Dakota, USA?",
+              options: [
+                { key: "A", text: "16" },
+                { key: "B", text: "14" },
+                { key: "C", text: "18" }
+              ],
+              correct: "B",
+              quote: "In South Dakota, in the US, you can drive a car at 14 years of age.",
+              explanation: "Ở bang South Dakota (Mỹ), bạn có thể lái xe ô tô hợp pháp từ khi đủ 14 tuổi."
+            },
+            {
+              id: 2,
+              passageId: 1,
+              question: "How many languages can you watch TV shows in Malaysia?",
+              options: [
+                { key: "A", text: "Around 5" },
+                { key: "B", text: "Around 10" },
+                { key: "C", text: "Around 15" }
+              ],
+              correct: "C",
+              quote: "You can watch TV shows in around 15 languages in Malaysia. Many Malaysians can speak at least three languages.",
+              explanation: "Ở Malaysia, bạn có thể xem các chương trình truyền hình bằng khoảng 15 thứ tiếng khác nhau."
+            },
+            {
+              id: 3,
+              passageId: 1,
+              question: "At what age can Brazilians vote?",
+              options: [
+                { key: "A", text: "18" },
+                { key: "B", text: "21" },
+                { key: "C", text: "16" }
+              ],
+              correct: "C",
+              quote: "In Brazil, both men and women can vote at the age of 16.",
+              explanation: "Tại Brazil, cả công dân nam và nữ đều có quyền bỏ phiếu bầu cử từ năm 16 tuổi."
+            },
+            {
+              id: 4,
+              passageId: 1,
+              question: "How many years do children in Peru have to attend school?",
+              options: [
+                { key: "A", text: "9 years" },
+                { key: "B", text: "10 years" },
+                { key: "C", text: "13 years" }
+              ],
+              correct: "B",
+              quote: "In Peru, you have to go to school for 10 years, but in Thailand, you have to go for only 9 years.",
+              explanation: "Tại Peru, trẻ em bắt buộc phải đến trường đi học trong thời gian 10 năm (còn ở Thái Lan là 9 năm)."
+            },
+            {
+              id: 5,
+              passageId: 1,
+              question: "In which country do children not have to attend school after the age of 13?",
+              options: [
+                { key: "A", text: "Peru" },
+                { key: "B", text: "Thailand" },
+                { key: "C", text: "Kenya" }
+              ],
+              correct: "C",
+              quote: "In Kenya, you don’t have to go to school after the age of 13.",
+              explanation: "Ở Kenya, trẻ em không bắt buộc phải tiếp tục đến trường sau khi qua 13 tuổi."
+            },
+            {
+              id: 6,
+              passageId: 1,
+              question: "What is the minimum legal age for girls to marry in Mexico with parental consent?",
+              options: [
+                { key: "A", text: "14" },
+                { key: "B", text: "16" },
+                { key: "C", text: "18" }
+              ],
+              correct: "A",
+              quote: "In Mexico, girls can get married at 14 if their parents agree.",
+              explanation: "Tại Mexico, các cô gái có thể kết hôn hợp pháp từ 14 tuổi nếu nhận được sự đồng ý của cha mẹ (parental consent)."
+            },
+            {
+              id: 7,
+              passageId: 1,
+              question: "What subject must all 13-year-olds study at Brighton College in the UK?",
+              options: [
+                { key: "A", text: "French" },
+                { key: "B", text: "Chinese" },
+                { key: "C", text: "History" }
+              ],
+              correct: "B",
+              quote: "At Brighton College in the UK, at the age of 13 every student has to study Chinese!",
+              explanation: "Tại trường Brighton College ở Vương quốc Anh, tất cả học sinh 13 tuổi bắt buộc phải học tiếng Trung Quốc (Chinese)."
+            },
+            {
+              id: 8,
+              passageId: 1,
+              question: "When were black people in South Africa first allowed to vote?",
+              options: [
+                { key: "A", text: "1960" },
+                { key: "B", text: "1994" },
+                { key: "C", text: "1985" }
+              ],
+              correct: "B",
+              quote: "Until 1994, black people in South Africa couldn’t vote.",
+              explanation: "Cho đến năm 1994 người da đen ở Nam Phi mới không còn bị cấm bỏ phiếu, tức là năm 1994 họ chính thức lần đầu tiên được quyền đi bầu cử."
+            },
+            {
+              id: 9,
+              passageId: 1,
+              question: "Which country was the first to allow women to vote?",
+              options: [
+                { key: "A", text: "Australia" },
+                { key: "B", text: "USA" },
+                { key: "C", text: "New Zealand" }
+              ],
+              correct: "C",
+              quote: "Women couldn’t vote anywhere in the world until 1893, when New Zealand became the first country to give women the vote.",
+              explanation: "New Zealand là quốc gia đầu tiên trên thế giới trao quyền bầu cử cho phụ nữ vào năm 1893."
+            },
+            {
+              id: 10,
+              passageId: 1,
+              question: "What is the term for children being taught at home instead of school in the US?",
+              options: [
+                { key: "A", text: "Remote schooling" },
+                { key: "B", text: "Homeschooling" },
+                { key: "C", text: "Private tutoring" }
+              ],
+              correct: "B",
+              quote: "Around 2 million children in the United States don’t have to go to school – they can stay at home because their parents teach them. This is called homeschooling.",
+              explanation: "Việc học tại nhà dưới sự giảng dạy của cha mẹ thay vì đến trường học ở Mỹ được gọi là 'homeschooling' (giáo dục tại gia)."
+            }
+          ]
+        },
+        {
+          id: 2,
+          title: "Passage 2: The Razzie Awards",
+          subtitle: "Giải thưởng Mâm xôi vàng (Golden Raspberry)",
+          contentHtml: `
+            <div class="passage-intro mb-4 text-slate-700 font-medium">
+              Read the passage and choose the best answer.
+            </div>
+            <div class="space-y-4 text-slate-800 leading-relaxed text-justify">
+              <p data-quote-id="p2-par1">
+                While every actor in Hollywood wants an Oscar, nobody wants a Razzie. Razzie is the short name for Golden Raspberry. <span class="evidence-target q11-target">It is an award given to the worst actors and films of the year.</span> <span class="evidence-target q12-target">These awards are given out on the night before the Oscars.</span> The local and foreign media are in Hollywood, so there is a lot of interest. Just not the kind of interest that most people want!
+              </p>
+              <p data-quote-id="p2-par2">
+                How did the Razzies start? <span class="evidence-target q13-target">John Wilson, a Hollywood publicist, used to hold an Oscars party at his house after the real awards ceremony. At his party in 1981, he talked about the films that he liked the least that year, and gave them little prizes.</span> He encouraged friends to do the same. These parties were a huge success. So, later, he decided to start his own awards ceremony, <span class="evidence-target q14-target">Wilson made little awards from plastic raspberries and covered them in gold paint.</span> <span class="evidence-target q15-target">They only cost $5 each and look terrible!</span> <span class="evidence-target q16-target">650 film journalists and film fans are now members of the Golden Raspberry Award Foundation, and they vote for the worst films of the year.</span> <span class="evidence-target q17-target">Anyone can be a member of the foundation, as long as they pay.</span>
+              </p>
+              <p data-quote-id="p2-par3">
+                At first, no Razzie winners wanted to collect their award, probably because they were embarrassed. But in 1988, Bill Cosby, an American comedian, heard that he had won three awards, for Worst Actor, Worst Film and Worst Screenplay. <span class="evidence-target q19-target">He said, ‘I want my Golden Raspberry, and if it isn’t golden, I’m going to the press!’</span> So, a TV company made real gold awards and Bill Cosby accepted them on a chat show. He said, ‘It was a lot of fun to do’. After that, actors and directors with a sense of humor began accepting their awards on TV chat shows. <span class="evidence-target q18-target">Paul Verhoeven was the first person to go to the Razzie Awards Ceremony to collect his awards in person, for Worst Director and Worst Film.</span> Other popular winners include <span class="evidence-target q20-target">Sandra Bullock, who accepted her first Oscar for Best Actress for a different film.</span> But most Razzie winners still prefer to pretend that they haven’t won!
+              </p>
+            </div>
+          `,
+          questions: [
+            {
+              id: 11,
+              passageId: 2,
+              question: "What is the Razzie Award?",
+              options: [
+                { key: "A", text: "An award for the best films of the year" },
+                { key: "B", text: "An award for the worst films of the year" },
+                { key: "C", text: "An award for the most popular films of the year" }
+              ],
+              correct: "B",
+              quote: "Razzie is the short name for Golden Raspberry. It is an award given to the worst actors and films of the year.",
+              explanation: "Razzie (Mâm xôi vàng) là giải thưởng dành cho các diễn viên và bộ phim dở nhất trong năm ('the worst actors and films of the year')."
+            },
+            {
+              id: 12,
+              passageId: 2,
+              question: "When are the Razzie Awards given?",
+              options: [
+                { key: "A", text: "The same night as the Oscars" },
+                { key: "B", text: "The night before the Oscars" },
+                { key: "C", text: "One month after the Oscars" }
+              ],
+              correct: "B",
+              quote: "These awards are given out on the night before the Oscars.",
+              explanation: "Giải Razzie được trao vào đêm ngay trước lễ trao giải Oscar ('on the night before the Oscars')."
+            },
+            {
+              id: 13,
+              passageId: 2,
+              question: "How did the Razzies start?",
+              options: [
+                { key: "A", text: "John Wilson created them as a joke at an Oscars party." },
+                { key: "B", text: "They were started by Hollywood filmmakers." },
+                { key: "C", text: "They were created by film critics in a magazine." }
+              ],
+              correct: "A",
+              quote: "John Wilson, a Hollywood publicist, used to hold an Oscars party at his house after the real awards ceremony. At his party in 1981, he talked about the films that he liked the least that year, and gave them little prizes.",
+              explanation: "Giải Razzie bắt nguồn từ bữa tiệc tại gia do John Wilson tổ chức năm 1981, khi ông tự trao các phần thưởng trêu đùa cho những bộ phim ông ghét nhất năm đó."
+            },
+            {
+              id: 14,
+              passageId: 2,
+              question: "What are the Razzie trophies made of?",
+              options: [
+                { key: "A", text: "Real gold" },
+                { key: "B", text: "Silver and glass" },
+                { key: "C", text: "Plastic raspberries covered in gold paint" }
+              ],
+              correct: "C",
+              quote: "Wilson made little awards from plastic raspberries and covered them in gold paint.",
+              explanation: "Cúp Razzie được làm từ quả mâm xôi bằng nhựa và được phun sơn màu vàng nhũ ('plastic raspberries and covered them in gold paint')."
+            },
+            {
+              id: 15,
+              passageId: 2,
+              question: "How much does each Razzie trophy cost?",
+              options: [
+                { key: "A", text: "$5" },
+                { key: "B", text: "$50" },
+                { key: "C", text: "$500" }
+              ],
+              correct: "A",
+              quote: "They only cost $5 each and look terrible!",
+              explanation: "Mỗi chiếc cúp này chỉ tốn vẻn vẹn $5 để chế tạo ('They only cost $5 each')."
+            },
+            {
+              id: 16,
+              passageId: 2,
+              question: "Who votes for the Razzie Awards?",
+              options: [
+                { key: "A", text: "Only Hollywood actors" },
+                { key: "B", text: "Members of the Golden Raspberry Award Foundation" },
+                { key: "C", text: "A small group of film critics" }
+              ],
+              correct: "B",
+              quote: "650 film journalists and film fans are now members of the Golden Raspberry Award Foundation, and they vote for the worst films of the year.",
+              explanation: "Các thành viên của Quỹ Giải thưởng Mâm xôi Vàng (gồm 650 nhà báo và người hâm mộ điện ảnh) là những người bình chọn."
+            },
+            {
+              id: 17,
+              passageId: 2,
+              question: "What must a person do to become a member of the Razzie voting foundation?",
+              options: [
+                { key: "A", text: "Pass a test on film knowledge" },
+                { key: "B", text: "Pay a fee" },
+                { key: "C", text: "Be invited by John Wilson" }
+              ],
+              correct: "B",
+              quote: "Anyone can be a member of the foundation, as long as they pay.",
+              explanation: "Bất kỳ ai cũng có thể gia nhập quỹ bình chọn miễn là họ đóng phí ('as long as they pay')."
+            },
+            {
+              id: 18,
+              passageId: 2,
+              question: "Who was the first person to accept a Razzie in person?",
+              options: [
+                { key: "A", text: "Bill Cosby" },
+                { key: "B", text: "Sandra Bullock" },
+                { key: "C", text: "Paul Verhoeven" }
+              ],
+              correct: "C",
+              quote: "Paul Verhoeven was the first person to go to the Razzie Awards Ceremony to collect his awards in person, for Worst Director and Worst Film.",
+              explanation: "Đạo diễn Paul Verhoeven là người đầu tiên trực tiếp đến dự buổi lễ trao giải Razzie để nhận giải ('in person'). Bill Cosby nhận trên một chương trình trò chuyện truyền hình chứ không đến buổi lễ."
+            },
+            {
+              id: 19,
+              passageId: 2,
+              question: "How did Bill Cosby react to winning three Razzies?",
+              options: [
+                { key: "A", text: "He ignored them" },
+                { key: "B", text: "He refused to accept them" },
+                { key: "C", text: "He demanded a real gold award" }
+              ],
+              correct: "C",
+              quote: "He said, ‘I want my Golden Raspberry, and if it isn’t golden, I’m going to the press!’",
+              explanation: "Bill Cosby đã yêu cầu cúp phải làm bằng vàng thật, nếu không ông sẽ nhờ đến báo chí; sau đó một đài truyền hình đã làm cúp bằng vàng thật cho ông."
+            },
+            {
+              id: 20,
+              passageId: 2,
+              question: "What did Sandra Bullock do that was special?",
+              options: [
+                { key: "A", text: "She won both a Razzie and an Oscar in the same year." },
+                { key: "B", text: "She refused to accept her Razzie." },
+                { key: "C", text: "She won the Razzie for Worst Director." }
+              ],
+              correct: "A",
+              quote: "Other popular winners include Sandra Bullock, who accepted her first Oscar for Best Actress for a different film.",
+              explanation: "Sandra Bullock là trường hợp vô cùng hiếm hoi và đặc biệt khi vừa nhận giải Razzie (cho All About Steve) vừa nhận giải Oscar Nữ diễn viên chính xuất sắc nhất (cho The Blind Side) trong cùng một năm (cùng một tuần lễ trao giải)."
+            }
+          ]
+        },
+        {
+          id: 3,
+          title: "Passage 3: New Year celebrations around the world",
+          subtitle: "Phong tục đón Năm Mới tại các quốc gia",
+          contentHtml: `
+            <div class="passage-intro mb-4 text-slate-700 font-medium">
+              People around the world celebrate New Year in many different ways. Find out how some of our readers are going to celebrate this year.
+            </div>
+            <div class="space-y-3.5 text-slate-800 leading-relaxed">
+              <div data-quote-id="p3-spain" class="p-2.5 rounded bg-slate-50 border-l-4 border-amber-500">
+                <span class="evidence-target q21-target">At midnight on December 31st, I’m going to eat 12 grapes – one grape each time the bell rings.</span>
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Maria Alvarez, Spain</div>
+              </div>
+              <div data-quote-id="p3-aus" class="p-2.5 rounded bg-slate-50 border-l-4 border-emerald-500">
+                It’s summer in Australia, so everyone goes to the beach. <span class="evidence-target q22-target">I’m going to go surfing on New Year’s Day!</span>
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Helen Talen, Australia</div>
+              </div>
+              <div data-quote-id="p3-scot" class="p-2.5 rounded bg-slate-50 border-l-4 border-indigo-500">
+                <span class="evidence-target q23-target">New Year is called Hogmanay in Scotland.</span> I’m going to visit my neighbors. We’ll dance all night … and we’ll probably set off some fireworks, too!
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Stewart McBride, Scotland</div>
+              </div>
+              <div data-quote-id="p3-china" class="p-2.5 rounded bg-slate-50 border-l-4 border-red-500">
+                Chinese New Year lasts for fifteen days. There are a lot of celebrations. <span class="evidence-target q24-target">I’m going to dress up in lion costume and dance in a parade.</span> It’ll be great.
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Mei Hua, China</div>
+              </div>
+              <div data-quote-id="p3-greece" class="p-2.5 rounded bg-slate-50 border-l-4 border-blue-500">
+                January 1 is also St. Basil’s Day. <span class="evidence-target q25-target">My mother is going to make a cake called St. Basil’s Cake. She’s going to put a silver coin inside.</span> I hope I find it!
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Adrian Zinzinia, Greece</div>
+              </div>
+              <div data-quote-id="p3-iran" class="p-2.5 rounded bg-slate-50 border-l-4 border-teal-500">
+                <span class="evidence-target q26-target">Our New Year is March 21 (the first day of spring). We call it No Ruz.</span> We put up decorations and have a special dinner of eggs and rice. I’m not going to drink any alcohol, though, because I’m a Muslim.
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Behzad Abtahi, Iran</div>
+              </div>
+              <div data-quote-id="p3-israel" class="p-2.5 rounded bg-slate-50 border-l-4 border-cyan-500">
+                Jewish New Year is called Rosh Hashanah. It’s usually in September. <span class="evidence-target q27-target">I’m going to send cards and eat apples with honey!</span>
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Rebecca Levi, Israel</div>
+              </div>
+              <div data-quote-id="p3-vn" class="p-2.5 rounded bg-slate-50 border-l-4 border-rose-500">
+                <span class="evidence-target q28-target">Our New Year is called Tet.</span> It’s at the end of January or early February. <span class="evidence-target q30-target">I’m going to help my family clean up the house and then we’ll probably watch fireworks in the local park.</span>
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Nguyen Tran Tuan, Vietnam</div>
+              </div>
+              <div data-quote-id="p3-brazil" class="p-2.5 rounded bg-slate-50 border-l-4 border-yellow-500">
+                <span class="evidence-target q29-target">I’m going to light candles on Rio beach and I think I’ll throw flowers into the ocean for good luck.</span>
+                <div class="font-semibold text-sky-800 text-sm mt-1">— Belén Ines, Brazil</div>
+              </div>
+            </div>
+          `,
+          questions: [
+            {
+              id: 21,
+              passageId: 3,
+              question: "What does Maria Alvarez do at midnight on December 31st?",
+              options: [
+                { key: "A", text: "She eats 12 grapes, one for each bell ring." },
+                { key: "B", text: "She goes to the beach to celebrate." },
+                { key: "C", text: "She lights candles for good luck." }
+              ],
+              correct: "A",
+              quote: "At midnight on December 31st, I’m going to eat 12 grapes – one grape each time the bell rings. Maria Alvarez, Spain",
+              explanation: "Maria Alvarez (Tây Ban Nha) ăn 12 quả nho lúc nửa đêm ngày 31 tháng 12, mỗi quả ứng với mỗi tiếng chuông đồng hồ điểm."
+            },
+            {
+              id: 22,
+              passageId: 3,
+              question: "How does Helen Talen celebrate New Year in Australia?",
+              options: [
+                { key: "A", text: "She visits her neighbors and dances all night." },
+                { key: "B", text: "She goes surfing on New Year's Day." },
+                { key: "C", text: "She throws flowers into the ocean." }
+              ],
+              correct: "B",
+              quote: "It’s summer in Australia, so everyone goes to the beach. I’m going to go surfing on New Year’s Day! Helen Talen, Australia",
+              explanation: "Helen Talen (Úc) đi lướt sóng trên biển vào ngày Tết dương lịch ('go surfing on New Year’s Day')."
+            },
+            {
+              id: 23,
+              passageId: 3,
+              question: "What is New Year called in Scotland?",
+              options: [
+                { key: "A", text: "Rock Hashanah" },
+                { key: "B", text: "Hogmanay" },
+                { key: "C", text: "Tate" }
+              ],
+              correct: "B",
+              quote: "New Year is called Hogmanay in Scotland.",
+              explanation: "Ở Scotland, lễ đón Năm Mới được gọi là Hogmanay."
+            },
+            {
+              id: 24,
+              passageId: 3,
+              question: "What is Mei Hua going to do for Chinese New Year?",
+              options: [
+                { key: "A", text: "Send cards and eat apples with honey." },
+                { key: "B", text: "Go to the beach and surf." },
+                { key: "C", text: "Dress up in a lion costume and dance in a parade." }
+              ],
+              correct: "C",
+              quote: "I’m going to dress up in lion costume and dance in a parade. It’ll be great. Mei Hua, China",
+              explanation: "Mei Hua (Trung Quốc) sẽ mặc trang phục hình sư tử (múa lân) và nhảy múa trong đoàn diễu hành mừng năm mới."
+            },
+            {
+              id: 25,
+              passageId: 3,
+              question: "What special food is made on St. Basil’s Day in Greece?",
+              options: [
+                { key: "A", text: "A cake with a silver coin inside." },
+                { key: "B", text: "A plate of eggs and rice." },
+                { key: "C", text: "Apples with honey." }
+              ],
+              correct: "A",
+              quote: "My mother is going to make a cake called St. Basil’s Cake. She’s going to put a silver coin inside. I hope I find it! Adrian Zinzinia, Greece",
+              explanation: "Mẹ của Adrian làm chiếc bánh truyền thống St. Basil và giấu một đồng xu bạc bên trong chiếc bánh ('a cake with a silver coin inside')."
+            },
+            {
+              id: 26,
+              passageId: 3,
+              question: "When does Behzad Abtahi celebrate New Year in Iran?",
+              options: [
+                { key: "A", text: "December 31st" },
+                { key: "B", text: "September 21st" },
+                { key: "C", text: "March 21st" }
+              ],
+              correct: "C",
+              quote: "Our New Year is March 21 (the first day of spring). We call it No Ruz.",
+              explanation: "Năm mới No Ruz của người Iran diễn ra vào ngày 21 tháng 3 (ngày đầu tiên của mùa xuân)."
+            },
+            {
+              id: 27,
+              passageId: 3,
+              question: "What does Rebecca Levi eat for Jewish New Year?",
+              options: [
+                { key: "A", text: "Eggs and rice" },
+                { key: "B", text: "Apples with honey" },
+                { key: "C", text: "A cake with a coin inside" }
+              ],
+              correct: "B",
+              quote: "Jewish New Year is called Rosh Hashanah. It’s usually in September. I’m going to send cards and eat apples with honey! Rebecca Levi, Israel",
+              explanation: "Rebecca Levi (Israel) ăn táo chấm mật ong ('apples with honey') trong ngày Tết Rosh Hashanah của người Do Thái."
+            },
+            {
+              id: 28,
+              passageId: 3,
+              question: "What is Vietnamese New Year called?",
+              options: [
+                { key: "A", text: "Hogmanay" },
+                { key: "B", text: "Tet" },
+                { key: "C", text: "No Rose" }
+              ],
+              correct: "B",
+              quote: "Our New Year is called Tet. It’s at the end of January or early February.",
+              explanation: "Tết Nguyên Đán của người Việt Nam được gọi là 'Tet'."
+            },
+            {
+              id: 29,
+              passageId: 3,
+              question: "How is Belén Ines going to celebrate New Year in Brazil?",
+              options: [
+                { key: "A", text: "Light candles on Rio Beach and throw flowers into the ocean." },
+                { key: "B", text: "Eat 12 grapes, one for each bell ring." },
+                { key: "C", text: "Go surfing at the beach." }
+              ],
+              correct: "A",
+              quote: "I’m going to light candles on Rio beach and I think I’ll throw flowers into the ocean for good luck. Belén Ines, Brazil",
+              explanation: "Belén Ines (Brazil) sẽ thắp nến trên bờ biển Rio và thả hoa xuống biển để cầu mong may mắn."
+            },
+            {
+              id: 30,
+              passageId: 3,
+              question: "What is a common activity during Vietnamese New Year?",
+              options: [
+                { key: "A", text: "Dancing in a lion costume." },
+                { key: "B", text: "Eating grapes at midnight." },
+                { key: "C", text: "Cleaning the house and watching fireworks." }
+              ],
+              correct: "C",
+              quote: "I’m going to help my family clean up the house and then we’ll probably watch fireworks in the local park. Nguyen Tran Tuan, Vietnam",
+              explanation: "Theo chia sẻ của Tuấn (Việt Nam), hoạt động vào dịp Tết là phụ giúp gia đình dọn dẹp nhà cửa và đi xem bắn pháo hoa ở công viên."
+            }
+          ]
+        },
+        {
+          id: 4,
+          title: "Passage 4: Daily life in Accra, Ghana",
+          subtitle: "Cuộc sống hàng ngày của Jane tại Accra, Ghana",
+          contentHtml: `
+            <div class="passage-intro mb-4 text-slate-700 font-medium">
+              Read the passage and choose the best answer.
+            </div>
+            <div class="space-y-4 text-slate-800 leading-relaxed text-justify">
+              <p data-quote-id="p4-par1">
+                My name is Jane, <span class="evidence-target q31-target">here in Accra, the capital of Ghana, people call me Ama.</span> <span class="evidence-target q32-target">I live with a woman called Lizzie and her five children.</span> <span class="evidence-target q33-target">I teach English at a local school four days a week.</span> Daily life here is very different to my hometown of Newcastle in England. Everyone gets up <span class="evidence-target q34-target">when the sun rises, at around 5 a.m.</span> We have breakfast outside at 6 a.m. We use our hands to eat. Then I walk to school. I teach from 8 a.m. to midday. <span class="evidence-target q35-target">When I get home, I help the children feed the rabbits and chickens.</span> Sometimes we have rabbit for dinner!
+              </p>
+              <p data-quote-id="p4-par2">
+                <span class="evidence-target q36-target">About three times a week in the afternoon,</span> <span class="evidence-target q37-target">I visit the market to buy fruit and vegetables.</span> I can check my e-mail in a small shop, too, and talk with friends. When I get home, I usually read a book. <span class="evidence-target q38-target">Lizzie spends all afternoon cooking dinner outside and talking with friends.</span> I sometimes help the children do their homework, and then we sit outside and have dinner together. <span class="evidence-target q39-target">After dinner we always watch TV.</span>
+              </p>
+              <p data-quote-id="p4-par3">
+                The sun goes down very quickly here. We all go to bed at nine o’clock. On weekends <span class="evidence-target q40-target">I often take a minibus to the center of town,</span> and I sometimes go to the ocean.
+              </p>
+            </div>
+          `,
+          questions: [
+            {
+              id: 31,
+              passageId: 4,
+              question: "Where does Jane live?",
+              options: [
+                { key: "A", text: "Newcastle, England" },
+                { key: "B", text: "Accra, Ghana" },
+                { key: "C", text: "Lagos, Nigeria" }
+              ],
+              correct: "B",
+              quote: "My name is Jane, here in Accra, the capital of Ghana, people call me Ama. I live with a woman called Lizzie and her five children.",
+              explanation: "Jane hiện đang sinh sống tại thủ đô Accra của đất nước Ghana (còn Newcastle ở Anh là quê hương gốc của cô)."
+            },
+            {
+              id: 32,
+              passageId: 4,
+              question: "How many children live with Lizzie?",
+              options: [
+                { key: "A", text: "Three" },
+                { key: "B", text: "Four" },
+                { key: "C", text: "Five" }
+              ],
+              correct: "C",
+              quote: "I live with a woman called Lizzie and her five children.",
+              explanation: "Lizzie sống cùng 5 người con của mình ('her five children')."
+            },
+            {
+              id: 33,
+              passageId: 4,
+              question: "How often does Jane teach at the local school?",
+              options: [
+                { key: "A", text: "Three days a week" },
+                { key: "B", text: "Four days a week" },
+                { key: "C", text: "Five days a week" }
+              ],
+              correct: "B",
+              quote: "I teach English at a local school four days a week.",
+              explanation: "Jane dạy tiếng Anh tại trường địa phương 4 ngày một tuần ('four days a week')."
+            },
+            {
+              id: 34,
+              passageId: 4,
+              question: "At what time does the sun rise in Accra?",
+              options: [
+                { key: "A", text: "4 a.m." },
+                { key: "B", text: "5 a.m." },
+                { key: "C", text: "6 a.m." }
+              ],
+              correct: "B",
+              quote: "Everyone gets up when the sun rises, at around 5 a.m.",
+              explanation: "Mặt trời mọc vào khoảng 5 giờ sáng ('around 5 a.m.')."
+            },
+            {
+              id: 35,
+              passageId: 4,
+              question: "What does Jane do after school?",
+              options: [
+                { key: "A", text: "Helps the children feed the animals" },
+                { key: "B", text: "Goes to the market" },
+                { key: "C", text: "Watches TV" }
+              ],
+              correct: "A",
+              quote: "When I get home, I help the children feed the rabbits and chickens.",
+              explanation: "Khi về nhà sau giờ dạy, Jane giúp bọn trẻ cho thỏ và gà ăn (tương ứng với đáp án 'feed the animals')."
+            },
+            {
+              id: 36,
+              passageId: 4,
+              question: "How many times a week does Jane visit the market?",
+              options: [
+                { key: "A", text: "Two" },
+                { key: "B", text: "Three" },
+                { key: "C", text: "Four" }
+              ],
+              correct: "B",
+              quote: "About three times a week in the afternoon, I visit the market to buy fruit and vegetables.",
+              explanation: "Jane đi chợ khoảng 3 lần mỗi tuần vào các buổi chiều ('About three times a week')."
+            },
+            {
+              id: 37,
+              passageId: 4,
+              question: "What does Jane usually buy at the market?",
+              options: [
+                { key: "A", text: "Meat" },
+                { key: "B", text: "Vegetables" },
+                { key: "C", text: "Clothes" }
+              ],
+              correct: "B",
+              quote: "I visit the market to buy fruit and vegetables.",
+              explanation: "Jane đến chợ để mua hoa quả và rau củ ('fruit and vegetables'). Trong các lựa chọn thì 'Vegetables' là đáp án chính xác."
+            },
+            {
+              id: 38,
+              passageId: 4,
+              question: "What does Lizzie do in the afternoon?",
+              options: [
+                { key: "A", text: "Cooks dinner and talks with friends" },
+                { key: "B", text: "Teaches at school" },
+                { key: "C", text: "Takes the children to the beach" }
+              ],
+              correct: "A",
+              quote: "Lizzie spends all afternoon cooking dinner outside and talking with friends.",
+              explanation: "Vào buổi chiều, Lizzie dành toàn bộ thời gian nấu bữa tối ngoài trời và trò chuyện với bạn bè ('cooking dinner outside and talking with friends')."
+            },
+            {
+              id: 39,
+              passageId: 4,
+              question: "What do Jane and the children do after dinner?",
+              options: [
+                { key: "A", text: "Watch TV" },
+                { key: "B", text: "Do homework" },
+                { key: "C", text: "Play games" }
+              ],
+              correct: "A",
+              quote: "After dinner we always watch TV.",
+              explanation: "Sau bữa tối, họ luôn cùng nhau xem ti vi ('always watch TV')."
+            },
+            {
+              id: 40,
+              passageId: 4,
+              question: "How does Jane usually travel to the center of town on weekends?",
+              options: [
+                { key: "A", text: "By car" },
+                { key: "B", text: "By minibus" },
+                { key: "C", text: "By bicycle" }
+              ],
+              correct: "B",
+              quote: "On weekends I often take a minibus to the center of town, and I sometimes go to the ocean.",
+              explanation: "Vào cuối tuần, cô thường đi xe buýt mini ('minibus') để vào trung tâm thành phố."
+            }
+          ]
+        }
+      ]
+    };
+
+    // Tạo danh sách 40 câu hỏi phẳng
+    const allQuestions = [];
+    quizData.passages.forEach(p => {
+      p.questions.forEach(q => allQuestions.push(q));
+    });
+  </script>
+
+  <!-- 2. TRACKER MODULE (Bộ đếm & Quản lý với bộ nhớ an toàn Safe-Storage) -->
+  <script>
+    const Tracker = (function() {
+      const STORAGE_KEYS = {
+        TOTAL_VISITS: 'tdc_quiz_total_visits',
+        STUDENT_LOGS: 'tdc_quiz_student_logs',
+        CURRENT_SESSION: 'tdc_quiz_current_session',
+        CONFIG: 'tdc_quiz_config'
+      };
+
+      // Bộ nhớ đệm trong RAM đề phòng trình duyệt chặn localStorage (ví dụ chạy qua file://)
+      const memoryStorage = {};
+
+      function safeGetItem(key) {
+        try {
+          if (window.localStorage) {
+            const v = window.localStorage.getItem(key);
+            if (v !== null) return v;
+          }
+        } catch (e) {}
+        return memoryStorage[key] || null;
+      }
+
+      function safeSetItem(key, val) {
+        memoryStorage[key] = val;
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem(key, val);
+          }
+        } catch (e) {}
+      }
+
+      function safeSessionGet(key) {
+        try {
+          if (window.sessionStorage) {
+            const v = window.sessionStorage.getItem(key);
+            if (v !== null) return v;
+          }
+        } catch (e) {}
+        return memoryStorage['sess_' + key] || null;
+      }
+
+      function safeSessionSet(key, val) {
+        memoryStorage['sess_' + key] = val;
+        try {
+          if (window.sessionStorage) {
+            window.sessionStorage.setItem(key, val);
+          }
+        } catch (e) {}
+      }
+
+      function initSession() {
+        let totalVisits = 1;
+        try {
+          const stored = safeGetItem(STORAGE_KEYS.TOTAL_VISITS);
+          totalVisits = stored ? parseInt(stored, 10) + 1 : 1;
+          safeSetItem(STORAGE_KEYS.TOTAL_VISITS, totalVisits.toString());
+        } catch (e) {}
+
+        const sessionId = 'ses_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+        const sessionData = {
+          sessionId: sessionId,
+          startTime: new Date().toISOString(),
+          studentName: '',
+          studentId: '',
+          studentClass: '',
+          status: 'in_progress',
+          score: null,
+          score10: null,
+          correctCount: 0,
+          totalCount: 40,
+          durationSeconds: 0,
+          answers: {},
+          passageScores: {}
+        };
+
+        safeSessionSet(STORAGE_KEYS.CURRENT_SESSION, JSON.stringify(sessionData));
+        updateVisitorBadgeUI(totalVisits);
+        syncCloudCounter();
+        return sessionData;
+      }
+
+      function getCurrentSession() {
+        try {
+          const raw = safeSessionGet(STORAGE_KEYS.CURRENT_SESSION);
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        return initSession();
+      }
+
+      function updateCurrentSession(partial) {
+        const current = getCurrentSession();
+        const updated = { ...current, ...partial };
+        safeSessionSet(STORAGE_KEYS.CURRENT_SESSION, JSON.stringify(updated));
+        return updated;
+      }
+
+      function recordSubmission(submissionData) {
+        try {
+          const logs = getLogs();
+          const newEntry = {
+            id: 'log_' + Date.now(),
+            submittedAt: new Date().toLocaleString('vi-VN'),
+            timestamp: Date.now(),
+            ...submissionData
+          };
+          logs.unshift(newEntry);
+          safeSetItem(STORAGE_KEYS.STUDENT_LOGS, JSON.stringify(logs));
+          updateVisitorBadgeUI();
+          return newEntry;
+        } catch (e) {
+          console.error('Lỗi lưu kết quả:', e);
+        }
+      }
+
+      function getLogs() {
+        try {
+          const raw = safeGetItem(STORAGE_KEYS.STUDENT_LOGS);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function clearAllLogs() {
+        safeSetItem(STORAGE_KEYS.STUDENT_LOGS, JSON.stringify([]));
+        safeSetItem(STORAGE_KEYS.TOTAL_VISITS, '0');
+        updateVisitorBadgeUI(0);
+      }
+
+      async function syncCloudCounter() {
+        try {
+          const res = await fetch('https://api.counterapi.dev/v1/tdc_reading_ta2/visits/up', {
+            method: 'GET',
+            cache: 'no-store'
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.count) {
+              updateVisitorBadgeUI(data.count, true);
+            }
+          }
+        } catch (err) {}
+      }
+
+      function updateVisitorBadgeUI(count) {
+        const el = document.getElementById('visitor-count-badge');
+        let totalLocal = 1;
+        try {
+          totalLocal = parseInt(safeGetItem(STORAGE_KEYS.TOTAL_VISITS) || '1', 10);
+        } catch (e) {}
+        const displayCount = count || totalLocal;
+        if (el) {
+          el.innerHTML = `
+            <span class="inline-flex items-center gap-1.5 font-semibold">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <svg class="w-4 h-4 text-sky-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span class="text-xs text-sky-100 hidden sm:inline font-medium">Lượt truy cập:</span>
+              <span class="text-amber-300 font-bold font-mono text-sm">${displayCount.toLocaleString('vi-VN')}</span>
+            </span>
+          `;
+        }
+      }
+
+      function exportToCSV() {
+        const logs = getLogs();
+        if (logs.length === 0) {
+          alert('Chưa có lượt sinh viên nào nộp bài để xuất file.');
+          return;
+        }
+
+        const headers = [
+          'STT',
+          'Thời gian nộp',
+          'MSSV',
+          'Họ và tên',
+          'Lớp',
+          'Số câu đúng (/40)',
+          'Điểm số (Hệ 10)',
+          'Thời gian làm bài',
+          'Xếp loại',
+          'Bài 1 (/10)',
+          'Bài 2 (/10)',
+          'Bài 3 (/10)',
+          'Bài 4 (/10)'
+        ];
+
+        const rows = logs.map((log, index) => {
+          const p1 = log.passageScores ? (log.passageScores[1] || 0) : 0;
+          const p2 = log.passageScores ? (log.passageScores[2] || 0) : 0;
+          const p3 = log.passageScores ? (log.passageScores[3] || 0) : 0;
+          const p4 = log.passageScores ? (log.passageScores[4] || 0) : 0;
+
+          let grade = 'Cần cố gắng';
+          if (log.score10 >= 8.5) grade = 'Giỏi / Xuất sắc';
+          else if (log.score10 >= 7.0) grade = 'Khá';
+          else if (log.score10 >= 5.0) grade = 'Trung bình / Đạt';
+
+          return [
+            index + 1,
+            `"${log.submittedAt || ''}"`,
+            `"${log.studentId || ''}"`,
+            `"${log.studentName || 'Chưa nhập'}"`,
+            `"${log.studentClass || ''}"`,
+            `${log.correctCount || 0}/40`,
+            log.score10 !== undefined ? log.score10.toFixed(1) : '0.0',
+            `"${log.durationFormatted || ''}"`,
+            `"${grade}"`,
+            `${p1}/10`,
+            `${p2}/10`,
+            `${p3}/10`,
+            `${p4}/10`
+          ].join(',');
+        });
+
+        const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\r\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+        a.download = `Bang_Diem_TA2_Reading_TDC_${dateStr}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function getAnalytics() {
+        const logs = getLogs();
+        let totalVisits = 1;
+        try {
+          totalVisits = parseInt(safeGetItem(STORAGE_KEYS.TOTAL_VISITS) || '1', 10);
+        } catch (e) {}
+
+        const submittedCount = logs.length;
+        let sumScore = 0;
+        let passCount = 0;
+
+        logs.forEach(log => {
+          const s = log.score10 || 0;
+          sumScore += s;
+          if (s >= 5.0) passCount++;
+        });
+
+        const avgScore = submittedCount > 0 ? (sumScore / submittedCount).toFixed(2) : '0.0';
+        const passRate = submittedCount > 0 ? Math.round((passCount / submittedCount) * 100) : 0;
+
+        return {
+          totalVisits,
+          submittedCount,
+          avgScore,
+          passRate,
+          logs
+        };
+      }
+
+      return {
+        initSession,
+        getCurrentSession,
+        updateCurrentSession,
+        recordSubmission,
+        getLogs,
+        clearAllLogs,
+        exportToCSV,
+        getAnalytics,
+        updateVisitorBadgeUI
+      };
+    })();
+  </script>
+
+  <!-- 3. APP LOGIC MODULE -->
+  <script>
+    const App = (function() {
+      let state = {
+        isSubmitted: false,
+        studentAnswers: {},
+        activePassageId: 1,
+        activeQuestionId: 1,
+        reviewFilter: 'all',
+        fontSize: 16,
+        timerSeconds: 0,
+        timerInterval: null,
+        studentInfo: {
+          name: '',
+          studentId: '',
+          studentClass: ''
+        },
+        isSpeaking: false
+      };
+
+      function init() {
+        try {
+          const session = Tracker.getCurrentSession();
+          if (session && session.studentName) {
+            state.studentInfo.name = session.studentName;
+            state.studentInfo.studentId = session.studentId;
+            state.studentInfo.studentClass = session.studentClass;
+            updateStudentBadgeUI();
+          }
+        } catch (e) {
+          console.error(e);
+        }
+
+        renderPassageTabs();
+        renderPassageContent(state.activePassageId);
+        renderQuestionPalette();
+        renderQuestionsList();
+        startTimer();
+        setupEventListeners();
+
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+      }
+
+      function startTimer() {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        state.timerInterval = setInterval(() => {
+          state.timerSeconds++;
+          updateTimerDisplay();
+        }, 1000);
+      }
+
+      function stopTimer() {
+        if (state.timerInterval) {
+          clearInterval(state.timerInterval);
+          state.timerInterval = null;
+        }
+      }
+
+      function formatTime(totalSeconds) {
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function updateTimerDisplay() {
+        const timerEl = document.getElementById('timer-display');
+        if (timerEl) {
+          timerEl.textContent = formatTime(state.timerSeconds);
+        }
+      }
+
+      function updateStudentBadgeUI() {
+        const nameEl = document.getElementById('student-name-display');
+        if (nameEl) {
+          if (state.studentInfo.name || state.studentInfo.studentId) {
+            nameEl.innerHTML = `
+              <span class="inline-flex items-center gap-1.5 bg-sky-900/40 px-2.5 py-1 rounded-full border border-sky-400/30 text-xs text-sky-100 font-medium">
+                <svg class="w-3.5 h-3.5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="font-bold text-white">${state.studentInfo.name || 'Sinh viên'}</span>
+                ${state.studentInfo.studentId ? `<span class="text-sky-300">(${state.studentInfo.studentId})</span>` : ''}
+              </span>
+            `;
+          } else {
+            nameEl.innerHTML = `
+              <button onclick="App.openStudentInfoModal()" class="text-xs bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-2.5 py-1 rounded-full transition flex items-center gap-1 shadow-sm">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Nhập Họ tên & MSSV
+              </button>
+            `;
+          }
+        }
+      }
+
+      function renderPassageTabs() {
+        const container = document.getElementById('passage-tabs');
+        if (!container) return;
+
+        let html = `
+          <button onclick="App.switchPassage('all')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${state.activePassageId === 'all' ? 'bg-sky-700 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+            Tất cả bài đọc
+          </button>
+        `;
+
+        quizData.passages.forEach(p => {
+          const isActive = state.activePassageId === p.id;
+          html += `
+            <button onclick="App.switchPassage(${p.id})" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${isActive ? 'bg-sky-700 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+              Bài ${p.id}
+            </button>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function switchPassage(passageId) {
+        state.activePassageId = passageId;
+        renderPassageTabs();
+        renderPassageContent(passageId);
+        stopSpeech();
+        
+        const passagePane = document.getElementById('passage-pane-scroll');
+        if (passagePane) passagePane.scrollTop = 0;
+      }
+
+      function renderPassageContent(passageId) {
+        const container = document.getElementById('passage-content-container');
+        if (!container) return;
+
+        let passagesToRender = [];
+        if (passageId === 'all') {
+          passagesToRender = quizData.passages;
+        } else {
+          const p = quizData.passages.find(item => item.id === passageId);
+          if (p) passagesToRender = [p];
+        }
+
+        let html = '';
+        passagesToRender.forEach((p, idx) => {
+          html += `
+            <article id="passage-article-${p.id}" class="passage-box bg-white p-5 md:p-6 rounded-xl border border-slate-200 shadow-sm mb-6 ${idx > 0 ? 'mt-6' : ''}">
+              <div class="flex items-center justify-between border-b pb-3 mb-4">
+                <div>
+                  <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wider mb-1">
+                    Passage ${p.id}
+                  </span>
+                  <h3 class="text-lg font-bold text-slate-900">${p.title}</h3>
+                  <p class="text-xs text-slate-500 italic">${p.subtitle}</p>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button onclick="App.speakPassage(${p.id})" title="Đọc bài bằng giọng tiếng Anh" class="p-2 text-slate-500 hover:text-sky-600 hover:bg-sky-50 rounded-lg transition text-xs font-medium flex items-center gap-1">
+                    <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                    <span class="hidden sm:inline">Phát âm</span>
+                  </button>
+                </div>
+              </div>
+              <div class="passage-text-body text-slate-800" style="font-size: ${state.fontSize}px;">
+                ${p.contentHtml}
+              </div>
+            </article>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function changeFontSize(delta) {
+        const newSize = Math.max(13, Math.min(22, state.fontSize + delta));
+        state.fontSize = newSize;
+        const bodyEls = document.querySelectorAll('.passage-text-body');
+        bodyEls.forEach(el => el.style.fontSize = `${newSize}px`);
+      }
+
+      function speakPassage(passageId) {
+        if (!('speechSynthesis' in window)) {
+          alert('Trình duyệt của bạn không hỗ trợ phát âm tiếng Anh.');
+          return;
+        }
+
+        if (state.isSpeaking) {
+          window.speechSynthesis.cancel();
+          state.isSpeaking = false;
+          return;
+        }
+
+        const p = quizData.passages.find(item => item.id === passageId);
+        if (!p) return;
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = p.contentHtml;
+        const textToRead = tempDiv.innerText;
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.95;
+
+        utterance.onstart = () => { state.isSpeaking = true; };
+        utterance.onend = () => { state.isSpeaking = false; };
+        utterance.onerror = () => { state.isSpeaking = false; };
+
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function stopSpeech() {
+        if ('speechSynthesis' in window) {
+          try {
+            window.speechSynthesis.cancel();
+            state.isSpeaking = false;
+          } catch (e) {}
+        }
+      }
+
+      function renderQuestionPalette() {
+        const container = document.getElementById('question-palette');
+        if (!container) return;
+
+        let html = '';
+        allQuestions.forEach((q, idx) => {
+          const qNum = idx + 1;
+          const isAnswered = state.studentAnswers[q.id] !== undefined;
+          const isCurrent = state.activeQuestionId === q.id;
+
+          let btnClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+
+          if (state.isSubmitted) {
+            const isCorrect = state.studentAnswers[q.id] === q.correct;
+            btnClass = isCorrect ? 'bg-emerald-600 text-white font-bold border-emerald-700 shadow-sm' : 'bg-rose-500 text-white font-bold border-rose-600 shadow-sm';
+          } else {
+            if (isAnswered) {
+              btnClass = 'bg-sky-600 text-white font-bold border-sky-700 shadow-sm';
+            }
+          }
+
+          if (isCurrent) {
+            btnClass += ' ring-2 ring-amber-400 ring-offset-1 scale-105';
+          }
+
+          html += `
+            <button onclick="App.scrollToQuestion(${q.id})" id="palette-btn-${q.id}" class="w-8 h-8 rounded-lg text-xs font-semibold flex items-center justify-center transition border ${btnClass}">
+              ${qNum}
+            </button>
+          `;
+        });
+
+        container.innerHTML = html;
+        updateProgressCounter();
+      }
+
+      function updateProgressCounter() {
+        const answeredCount = Object.keys(state.studentAnswers).length;
+        const progressEl = document.getElementById('progress-counter');
+        const mobileProgressEl = document.getElementById('mobile-progress');
+        const progressBar = document.getElementById('progress-bar');
+        
+        if (progressEl) progressEl.textContent = `${answeredCount}/40`;
+        if (mobileProgressEl) mobileProgressEl.textContent = `${answeredCount}`;
+        if (progressBar) progressBar.style.width = `${(answeredCount / 40) * 100}%`;
+      }
+
+      function renderQuestionsList() {
+        const container = document.getElementById('questions-list-container');
+        if (!container) return;
+
+        let html = '';
+        allQuestions.forEach((q, idx) => {
+          const qNum = idx + 1;
+          const studentChosen = state.studentAnswers[q.id];
+          const isCorrect = studentChosen === q.correct;
+
+          if (state.isSubmitted) {
+            if (state.reviewFilter === 'incorrect' && isCorrect) return;
+            if (state.reviewFilter === 'correct' && !isCorrect) return;
+          }
+
+          html += `
+            <div id="question-card-${q.id}" class="question-card bg-white p-5 rounded-xl border border-slate-200 shadow-sm mb-5 transition-all ${state.activeQuestionId === q.id ? 'border-sky-500 ring-1 ring-sky-300' : ''}">
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg font-bold text-xs ${state.isSubmitted ? (isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800') : (studentChosen ? 'bg-sky-100 text-sky-800' : 'bg-slate-100 text-slate-700')}">
+                    ${qNum}
+                  </span>
+                  <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    Passage ${q.passageId}
+                  </span>
+                </div>
+                
+                ${state.isSubmitted ? `
+                  <div class="flex items-center gap-1.5">
+                    ${isCorrect ? `
+                      <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Chính xác
+                      </span>
+                    ` : `
+                      <span class="inline-flex items-center gap-1 text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Chưa đúng
+                      </span>
+                    `}
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="question-text font-semibold text-slate-900 text-sm md:text-base mb-4 leading-snug">
+                ${q.question}
+              </div>
+
+              <div class="options-group space-y-2.5">
+                ${q.options.map(opt => {
+                  const isSelected = studentChosen === opt.key;
+                  let optionStyle = 'border-slate-200 hover:bg-slate-50 text-slate-700';
+                  let badgeStyle = 'bg-slate-100 text-slate-700 border-slate-300';
+
+                  if (state.isSubmitted) {
+                    if (opt.key === q.correct) {
+                      optionStyle = 'bg-emerald-50 border-emerald-500 text-emerald-950 ring-1 ring-emerald-400 font-medium';
+                      badgeStyle = 'bg-emerald-600 text-white border-emerald-600';
+                    } else if (isSelected && !isCorrect) {
+                      optionStyle = 'bg-rose-50 border-rose-400 text-rose-950';
+                      badgeStyle = 'bg-rose-600 text-white border-rose-600';
+                    } else {
+                      optionStyle = 'opacity-60 border-slate-200 text-slate-500';
+                    }
+                  } else {
+                    if (isSelected) {
+                      optionStyle = 'bg-sky-50 border-sky-500 text-sky-950 font-semibold ring-1 ring-sky-400';
+                      badgeStyle = 'bg-sky-600 text-white border-sky-600';
+                    }
+                  }
+
+                  return `
+                    <label onclick="App.selectAnswer(${q.id}, '${opt.key}')" class="option-item flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all ${optionStyle} ${state.isSubmitted ? 'pointer-events-none' : ''}">
+                      <input type="radio" name="q_${q.id}" value="${opt.key}" ${isSelected ? 'checked' : ''} ${state.isSubmitted ? 'disabled' : ''} class="sr-only">
+                      <span class="w-6 h-6 flex items-center justify-center rounded-lg border text-xs font-bold transition-all shrink-0 ${badgeStyle}">
+                        ${opt.key}
+                      </span>
+                      <span class="text-sm select-none leading-relaxed flex-1">${opt.text}</span>
+                      ${state.isSubmitted && opt.key === q.correct ? `
+                        <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                      ` : ''}
+                      ${state.isSubmitted && isSelected && !isCorrect ? `
+                        <svg class="w-5 h-5 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      ` : ''}
+                    </label>
+                  `;
+                }).join('')}
+              </div>
+
+              ${state.isSubmitted ? `
+                <div class="explanation-box mt-4 pt-3.5 border-t border-slate-200 bg-slate-50/80 -mx-5 -mb-5 p-4 rounded-b-xl">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-bold text-sky-900 uppercase tracking-wider flex items-center gap-1.5">
+                      <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Dẫn chứng & Giải thích
+                    </span>
+                    <button onclick="App.locateEvidence(${q.passageId}, ${q.id})" class="text-xs font-bold text-sky-700 hover:text-sky-900 bg-sky-100 hover:bg-sky-200 px-2.5 py-1 rounded-md transition flex items-center gap-1">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                      Xem trong bài đọc
+                    </button>
+                  </div>
+
+                  <div class="evidence-quote bg-white p-3 rounded-lg border-l-4 border-amber-500 shadow-2xs mb-2.5 text-xs md:text-sm text-slate-800 italic">
+                    <span class="font-bold not-italic text-amber-700">📌 Trích đoạn bài đọc:</span>
+                    "${q.quote}"
+                  </div>
+
+                  <div class="explanation-text bg-sky-50/70 p-3 rounded-lg border border-sky-100 text-xs md:text-sm text-slate-800 leading-relaxed">
+                    <span class="font-bold text-sky-900">💡 Dịch nghĩa & Lời giải:</span>
+                    ${q.explanation}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      }
+
+      function selectAnswer(questionId, optionKey) {
+        if (state.isSubmitted) return;
+
+        state.studentAnswers[questionId] = optionKey;
+        state.activeQuestionId = questionId;
+
+        Tracker.updateCurrentSession({ answers: state.studentAnswers });
+
+        renderQuestionPalette();
+        renderQuestionsList();
+      }
+
+      function scrollToQuestion(questionId) {
+        state.activeQuestionId = questionId;
+        renderQuestionPalette();
+
+        const targetEl = document.getElementById(`question-card-${questionId}`);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetEl.classList.add('ring-2', 'ring-sky-500');
+          setTimeout(() => {
+            targetEl.classList.remove('ring-2', 'ring-sky-500');
+          }, 1500);
+        }
+
+        const q = allQuestions.find(item => item.id === questionId);
+        if (q && state.activePassageId !== 'all' && state.activePassageId !== q.passageId) {
+          switchPassage(q.passageId);
+        }
+      }
+
+      function locateEvidence(passageId, questionId) {
+        if (state.activePassageId !== passageId && state.activePassageId !== 'all') {
+          switchPassage(passageId);
+        }
+
+        const mobileTabPassageBtn = document.getElementById('mobile-tab-passage');
+        if (mobileTabPassageBtn && window.innerWidth < 1024) {
+          mobileTabPassageBtn.click();
+        }
+
+        setTimeout(() => {
+          const targetQuery = `.q${questionId}-target, [data-quote-id="q${questionId}"]`;
+          let element = document.querySelector(targetQuery);
+
+          if (!element) {
+            const q = allQuestions.find(item => item.id === questionId);
+            if (q) {
+              const article = document.getElementById(`passage-article-${passageId}`);
+              if (article) {
+                const spans = article.querySelectorAll('.evidence-target, li, p');
+                for (let el of spans) {
+                  if (el.textContent.includes(q.quote.substring(0, 20))) {
+                    element = el;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            element.classList.add('evidence-highlight-pulse');
+            setTimeout(() => {
+              element.classList.remove('evidence-highlight-pulse');
+            }, 3000);
+          }
+        }, 200);
+      }
+
+      function promptSubmit() {
+        if (state.isSubmitted) return;
+
+        const answeredCount = Object.keys(state.studentAnswers).length;
+        const unansweredCount = 40 - answeredCount;
+
+        const modal = document.getElementById('submit-confirm-modal');
+        const warningText = document.getElementById('submit-warning-text');
+
+        if (unansweredCount > 0) {
+          warningText.innerHTML = `
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-sm mb-3">
+              ⚠️ <strong>Chú ý:</strong> Bạn còn <strong>${unansweredCount}</strong> câu chưa trả lời (đã làm ${answeredCount}/40 câu).
+            </div>
+            <p class="text-slate-600 text-sm">Sau khi nộp bài, hệ thống sẽ <strong>khóa bài thi</strong>, chấm điểm tự động và mở bảng giải thích chi tiết từng câu.</p>
+          `;
+        } else {
+          warningText.innerHTML = `
+            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-sm mb-3">
+              🎉 <strong>Tuyệt vời!</strong> Bạn đã hoàn thành toàn bộ <strong>40/40</strong> câu hỏi.
+            </div>
+            <p class="text-slate-600 text-sm">Bạn đã sẵn sàng nộp bài để xem điểm số và kiểm tra giải thích chi tiết chưa?</p>
+          `;
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeSubmitConfirmModal() {
+        const modal = document.getElementById('submit-confirm-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function confirmSubmit() {
+        closeSubmitConfirmModal();
+        stopTimer();
+        state.isSubmitted = true;
+
+        let correctCount = 0;
+        const passageScores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+        allQuestions.forEach(q => {
+          const chosen = state.studentAnswers[q.id];
+          if (chosen === q.correct) {
+            correctCount++;
+            passageScores[q.passageId] = (passageScores[q.passageId] || 0) + 1;
+          }
+        });
+
+        const score10 = (correctCount / 40) * 10;
+        const durationFormatted = formatTime(state.timerSeconds);
+
+        Tracker.recordSubmission({
+          studentName: state.studentInfo.name || 'Sinh viên TDC',
+          studentId: state.studentInfo.studentId || 'Chưa cung cấp',
+          studentClass: state.studentInfo.studentClass || '',
+          correctCount: correctCount,
+          totalCount: 40,
+          score10: score10,
+          durationSeconds: state.timerSeconds,
+          durationFormatted: durationFormatted,
+          passageScores: passageScores,
+          answers: state.studentAnswers
+        });
+
+        const submitBtn = document.getElementById('btn-submit-quiz');
+        if (submitBtn) {
+          submitBtn.innerHTML = `
+            <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Đã hoàn thành bài thi</span>
+          `;
+          submitBtn.disabled = true;
+          submitBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+          submitBtn.classList.add('bg-slate-700', 'opacity-90', 'cursor-default');
+        }
+
+        const reviewToolbar = document.getElementById('review-filter-toolbar');
+        if (reviewToolbar) {
+          reviewToolbar.classList.remove('hidden');
+        }
+
+        renderQuestionPalette();
+        renderQuestionsList();
+        showResultModal(correctCount, score10, durationFormatted, passageScores);
+      }
+
+      function showResultModal(correctCount, score10, durationFormatted, passageScores) {
+        const modal = document.getElementById('result-modal');
+        if (!modal) return;
+
+        let evaluation = '';
+        if (score10 >= 8.5) {
+          evaluation = 'Xuất sắc / Giỏi! Khả năng đọc hiểu tiếng Anh của bạn rất tốt.';
+        } else if (score10 >= 7.0) {
+          evaluation = 'Khá tốt! Bạn đã nắm vững các ý chính của các bài đọc.';
+        } else if (score10 >= 5.0) {
+          evaluation = 'Đạt yêu cầu! Hãy xem kỹ lại các câu sai để rút kinh nghiệm.';
+        } else {
+          evaluation = 'Cần cố gắng thêm! Hãy xem phần dẫn chứng và dịch nghĩa để luyện tập lại.';
+        }
+
+        document.getElementById('res-student-name').textContent = state.studentInfo.name || 'Sinh viên';
+        document.getElementById('res-score-number').textContent = score10.toFixed(1);
+        document.getElementById('res-correct-count').textContent = `${correctCount}/40`;
+        document.getElementById('res-accuracy').textContent = `${Math.round((correctCount / 40) * 100)}%`;
+        document.getElementById('res-time').textContent = durationFormatted;
+        document.getElementById('res-evaluation').textContent = evaluation;
+
+        document.getElementById('res-p1-score').textContent = `${passageScores[1]}/10`;
+        document.getElementById('res-p2-score').textContent = `${passageScores[2]}/10`;
+        document.getElementById('res-p3-score').textContent = `${passageScores[3]}/10`;
+        document.getElementById('res-p4-score').textContent = `${passageScores[4]}/10`;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        if (typeof confetti === 'function' && score10 >= 5.0) {
+          try {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          } catch (e) {}
+        }
+      }
+
+      function closeResultModal() {
+        const modal = document.getElementById('result-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        scrollToQuestion(1);
+      }
+
+      function setReviewFilter(filter) {
+        state.reviewFilter = filter;
+        const buttons = document.querySelectorAll('.review-filter-btn');
+        buttons.forEach(btn => {
+          if (btn.dataset.filter === filter) {
+            btn.classList.add('bg-sky-600', 'text-white', 'shadow-xs');
+            btn.classList.remove('bg-white', 'text-slate-700');
+          } else {
+            btn.classList.remove('bg-sky-600', 'text-white', 'shadow-xs');
+            btn.classList.add('bg-white', 'text-slate-700');
+          }
+        });
+        renderQuestionsList();
+      }
+
+      function resetQuiz() {
+        if (!confirm('Bạn có chắc chắn muốn làm lại bài thi từ đầu? Toàn bộ lựa chọn hiện tại sẽ được đặt lại.')) {
+          return;
+        }
+
+        state.isSubmitted = false;
+        state.studentAnswers = {};
+        state.activeQuestionId = 1;
+        state.reviewFilter = 'all';
+        state.timerSeconds = 0;
+
+        Tracker.initSession();
+
+        const reviewToolbar = document.getElementById('review-filter-toolbar');
+        if (reviewToolbar) reviewToolbar.classList.add('hidden');
+
+        const submitBtn = document.getElementById('btn-submit-quiz');
+        if (submitBtn) {
+          submitBtn.innerHTML = `
+            <svg class="w-4 h-4 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Nộp bài & Kiểm tra đáp án</span>
+          `;
+          submitBtn.disabled = false;
+          submitBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+          submitBtn.classList.remove('bg-slate-700', 'opacity-90', 'cursor-default');
+        }
+
+        startTimer();
+        renderQuestionPalette();
+        renderQuestionsList();
+        switchPassage(1);
+
+        const resModal = document.getElementById('result-modal');
+        if (resModal) resModal.classList.add('hidden');
+      }
+
+      function openStudentInfoModal() {
+        const modal = document.getElementById('student-info-modal');
+        if (!modal) return;
+        document.getElementById('input-student-name').value = state.studentInfo.name || '';
+        document.getElementById('input-student-id').value = state.studentInfo.studentId || '';
+        document.getElementById('input-student-class').value = state.studentInfo.studentClass || '';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function saveStudentInfo(e) {
+        if (e) e.preventDefault();
+        const name = document.getElementById('input-student-name').value.trim();
+        const studentId = document.getElementById('input-student-id').value.trim();
+        const studentClass = document.getElementById('input-student-class').value.trim();
+
+        if (!name) {
+          alert('Vui lòng nhập họ và tên của bạn.');
+          return;
+        }
+
+        state.studentInfo = { name, studentId, studentClass };
+        Tracker.updateCurrentSession({
+          studentName: name,
+          studentId: studentId,
+          studentClass: studentClass
+        });
+
+        updateStudentBadgeUI();
+        closeStudentInfoModal();
+      }
+
+      function closeStudentInfoModal() {
+        const modal = document.getElementById('student-info-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function openAdminModal() {
+        const modal = document.getElementById('admin-modal');
+        if (!modal) return;
+        renderAdminDashboard();
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeAdminModal() {
+        const modal = document.getElementById('admin-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function renderAdminDashboard() {
+        const stats = Tracker.getAnalytics();
+
+        document.getElementById('admin-stat-visits').textContent = stats.totalVisits.toLocaleString('vi-VN');
+        document.getElementById('admin-stat-submissions').textContent = stats.submittedCount.toLocaleString('vi-VN');
+        document.getElementById('admin-stat-avg-score').textContent = stats.avgScore;
+        document.getElementById('admin-stat-pass-rate').textContent = `${stats.passRate}%`;
+
+        const tbody = document.getElementById('admin-logs-tbody');
+        if (!tbody) return;
+
+        if (stats.logs.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-8 text-center text-slate-400 italic">
+                Chưa có sinh viên nào nộp bài. Dữ liệu sẽ hiển thị ở đây ngay khi có bài thi hoàn tất.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        let rowsHtml = '';
+        stats.logs.forEach((log, index) => {
+          let gradeBadge = '';
+          if (log.score10 >= 8.5) {
+            gradeBadge = '<span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-800">Giỏi</span>';
+          } else if (log.score10 >= 7.0) {
+            gradeBadge = '<span class="px-2 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800">Khá</span>';
+          } else if (log.score10 >= 5.0) {
+            gradeBadge = '<span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-800">Đạt</span>';
+          } else {
+            gradeBadge = '<span class="px-2 py-0.5 rounded text-xs font-bold bg-rose-100 text-rose-800">Cần cố gắng</span>';
+          }
+
+          rowsHtml += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+              <td class="py-3 px-3 text-slate-500 font-mono text-xs">${index + 1}</td>
+              <td class="py-3 px-3 text-slate-500 text-xs">${log.submittedAt || ''}</td>
+              <td class="py-3 px-3 font-mono font-bold text-sky-900 text-xs">${log.studentId || '—'}</td>
+              <td class="py-3 px-3 font-semibold text-slate-800 text-xs md:text-sm">${log.studentName || 'Chưa nhập tên'}</td>
+              <td class="py-3 px-3 text-slate-600 text-xs">${log.studentClass || '—'}</td>
+              <td class="py-3 px-3 font-mono font-bold text-sky-700 text-sm">
+                ${log.score10 !== undefined ? log.score10.toFixed(1) : '0.0'}
+                <span class="text-xs text-slate-400 font-normal">(${log.correctCount || 0}/40)</span>
+              </td>
+              <td class="py-3 px-3">${gradeBadge}</td>
+            </tr>
+          `;
+        });
+
+        tbody.innerHTML = rowsHtml;
+      }
+
+      function handleClearLogs() {
+        const pin = prompt('Nhập mã PIN giảng viên để xác nhận xóa sạch dữ liệu (Mặc định: 1234):');
+        if (pin === '1234') {
+          Tracker.clearAllLogs();
+          renderAdminDashboard();
+          alert('Đã xóa dữ liệu thành công.');
+        } else if (pin !== null) {
+          alert('Mã PIN không chính xác.');
+        }
+      }
+
+      function setupEventListeners() {
+        const btnTabPassage = document.getElementById('mobile-tab-passage');
+        const btnTabQuestions = document.getElementById('mobile-tab-questions');
+        const passageColumn = document.getElementById('passage-column');
+        const questionsColumn = document.getElementById('questions-column');
+
+        if (btnTabPassage && btnTabQuestions && passageColumn && questionsColumn) {
+          btnTabPassage.addEventListener('click', () => {
+            btnTabPassage.classList.add('bg-white', 'text-sky-900', 'shadow-xs');
+            btnTabPassage.classList.remove('text-slate-500');
+            btnTabQuestions.classList.remove('bg-white', 'text-sky-900', 'shadow-xs');
+            btnTabQuestions.classList.add('text-slate-500');
+
+            passageColumn.classList.remove('hidden');
+            questionsColumn.classList.add('hidden');
+          });
+
+          btnTabQuestions.addEventListener('click', () => {
+            btnTabQuestions.classList.add('bg-white', 'text-sky-900', 'shadow-xs');
+            btnTabQuestions.classList.remove('text-slate-500');
+            btnTabPassage.classList.remove('bg-white', 'text-sky-900', 'shadow-xs');
+            btnTabPassage.classList.add('text-slate-500');
+
+            questionsColumn.classList.remove('hidden');
+            passageColumn.classList.add('hidden');
+          });
+        }
+      }
+
+      return {
+        init,
+        switchPassage,
+        changeFontSize,
+        speakPassage,
+        selectAnswer,
+        scrollToQuestion,
+        locateEvidence,
+        promptSubmit,
+        confirmSubmit,
+        closeSubmitConfirmModal,
+        showResultModal,
+        closeResultModal,
+        setReviewFilter,
+        resetQuiz,
+        openStudentInfoModal,
+        closeStudentInfoModal,
+        saveStudentInfo,
+        openAdminModal,
+        closeAdminModal,
+        handleClearLogs
+      };
+    })();
+
+    // KHỞI CHẠY AN TOÀN: Chạy ngay lập tức kể cả khi DOMContentLoaded đã kích hoạt
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        try { App.init(); } catch (err) { console.error('App init error:', err); }
+      });
+    } else {
+      try { App.init(); } catch (err) { console.error('App init error:', err); }
+    }
+  </script>
 </body>
 </html>
