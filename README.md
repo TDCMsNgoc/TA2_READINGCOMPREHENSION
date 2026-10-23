@@ -1,5 +1,5 @@
 # Phần Mềm Trắc Nghiệm Tiếng Anh 2 - READING COMPREHENSION
-### Trường Cao đẳng Công nghệ Thủ Đức (TDC) - Khoa Tiếng Anh / Bộ môn Ngoại ngữ
+### Trường Cao đẳng Công nghệ Thủ Đức (TDC)
 
 Ứng dụng web trắc nghiệm đọc hiểu Tiếng Anh 2 (TA2) hiện đại, chuyên nghiệp, hỗ trợ đầy đủ 4 bài đọc (Passages 1 - 4) và 40 câu hỏi trắc nghiệm kèm hệ thống trích dẫn câu trong bài và dịch nghĩa giải thích chi tiết.
 
